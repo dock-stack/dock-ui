@@ -27,7 +27,6 @@ const menuList: MenuList[] = [
 
 function App() {
   const ref = useRef(null);
-
   return (
     <div className="App" ref={ref}>
       <ContextMenu menuList={menuList} container={ref}/>
