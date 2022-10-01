@@ -4,12 +4,14 @@ specifiers:
   '@types/react': ^18.0.17
   '@types/react-dom': ^18.0.6
   '@vitejs/plugin-react': ^2.1.0
+  hotkeys-js: ^3.10.0
   react: ^18.2.0
   react-dom: ^18.2.0
   typescript: ^4.6.4
   vite: ^3.1.0
 
 dependencies:
+  hotkeys-js: 3.10.0
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
 
@@ -705,6 +707,10 @@ packages:
     dependencies:
       function-bind: 1.1.1
     dev: true
+
+  /hotkeys-js/3.10.0:
+    resolution: {integrity: sha512-20xeVdOqcgTkMox0+BqFwADZP7+5dy/9CFPpAinSMh2d0s3b0Hs2V2D+lMh4Hphkf7VE9pwnOl58eP1te+REcg==}
+    dev: false
 
   /is-core-module/2.10.0:
     resolution: {integrity: sha512-Erxj2n/LDAZ7H8WNJXd9tw38GYM3dv8rk8Zcs+jJuxYTW7sozH+SS8NtrSjVL1/vpLvWi1hxy96IzjJ3EHTJJg==}
