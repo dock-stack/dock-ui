@@ -1,28 +1,17 @@
-export interface HotKey {
-  /** Hot key is a string array. 
-   * 
-   * **info:** If you dont pass this prop, it will not register hot key. 
-  */
-  key: string[];
-
-  /** Show on the menu */
-  description?: JSX.Element | string;
-}
-
 export interface Menu {
   /** Name of menu item. */
   name?: string;
 
-  /** Show hot key and register it. */
-  hotKey?: HotKey;
+  /** Description the menu, such as `hotkey`. */
+  description?: JSX.Element | string;
 
   /** The Icon in front of `name` */
   frontIcon?: JSX.Element;
 
   /** Click hook.
-   * 
+   *
    * **param:** info -> `clicked item`
-   * 
+   *
    * **param:** target ->  pointer(`[number, number]`) | undefined(hot key case)
    */
   onClick?: (info: Menu, target?: [number, number]) => void;
@@ -41,11 +30,8 @@ export interface ContextMenuProps {
    */
   container?: React.MutableRefObject<HTMLElement | null>;
 
-  /** Close hook.
-   *
-   * **param:** info -> `clicked item | null(when clicking blank)`
-   */
-  onClose?: (info?: Menu) => void;
+  /** Close hook, when clicking `blank` or `menu item` */
+  onClose?: () => void;
 
   /** Open hook.
    *

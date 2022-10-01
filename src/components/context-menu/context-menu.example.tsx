@@ -1,6 +1,6 @@
 import { ContextMenu } from "./";
 import { Menu } from "./types";
-import { useRef } from "react";
+import { useMemo, useRef } from "react";
 import reactIcon from "../../assets/react.svg";
 
 function App() {
@@ -9,23 +9,18 @@ function App() {
   const menuList: Menu[] = [
     {
       name: "Copy",
-      hotKey: {
-        key: ["ctrl", "c"],
-        description: "Ctrl + C",
-      },
+      description: "Ctrl + C",
       onClick: (info, target) => {
         console.log(info, target);
       },
     },
     {
       name: "Refresh",
-      hotKey: {
-        key: ["f5"],
-        description: "F5",
-      },
+      description: "F5",
     },
     {
       name: "React",
+      description: "An FrameWork",
       frontIcon: <img src={reactIcon} />,
     },
   ];
@@ -40,7 +35,7 @@ function App() {
         position: "relative",
         top: "50px",
         left: "100px",
-        backgroundColor: "rgb(161 208 234 / 50%)"
+        backgroundColor: "rgb(161 208 234 / 50%)",
       }}
     >
       <ContextMenu
@@ -49,8 +44,8 @@ function App() {
         onOpen={(target) => {
           console.log(target);
         }}
-        onClose={(info) => {
-          console.log(info);
+        onClose={() => {
+          console.log("close");
         }}
       />
     </div>

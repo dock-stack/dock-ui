@@ -1,26 +1,25 @@
 import "./index.css";
-import hotkeys from "hotkeys-js";
-import { ContextMenuProps, Menu } from "./types";
+import { ContextMenuProps } from "./types";
 import { RefObject, useEffect, useMemo, useRef, useState } from "react";
 
+/** todo: css in  */
 export const ContextMenu = (props: ContextMenuProps) => {
   const { menuList = [], container, onOpen, onClose } = props;
 
   const ref = useRef<HTMLElement>(null);
   const [position, setPosition] = useState<[number, number]>();
-  // menu is unvisiable.
-  const [style, setStyle] = useState<React.CSSProperties>({ display: "none" });
+  const [style, setStyle] = useState<React.CSSProperties>({ display: "none" }); // menu is unvisiable initially.
 
-  const onClick = (info?: Menu) => {
+  const onMenuClose = () => {
+    if (onClose) onClose();
+
     setStyle({ display: "none" });
-    // effect: up data stream
-    if (onClose) onClose(info);
   };
 
   useEffect(() => {
     if (container && container.current) {
       // add click listener
-      container.current.onclick = () => onClick();
+      container.current.addEventListener("click", onMenuClose);
 
       // add contextmenu listener
       container.current.oncontextmenu = (event) => {
@@ -32,9 +31,9 @@ export const ContextMenu = (props: ContextMenuProps) => {
 
         // make a computable menu, set offset and make it hidden
         setStyle({
-          display: "block",
           top: -10000,
           left: -10000,
+          display: "block",
         });
 
         // set click position, pass to show effect
@@ -69,14 +68,6 @@ export const ContextMenu = (props: ContextMenuProps) => {
     }
   }, [position]);
 
-  useEffect(() => {
-    menuList.forEach((v) => {
-      hotkeys(v?.hotKey?.key?.reduce((p, c) => p + "+" + c) ?? "", () => {
-        if (v.onClick) v.onClick(v);
-      });
-    });
-  }, [menuList]);
-
   const MenuList = useMemo(() => {
     // todo: refactor this part
     return (
@@ -84,12 +75,11 @@ export const ContextMenu = (props: ContextMenuProps) => {
         {menuList.map((v) => {
           return (
             <li
+              key={v.name}
               className="ez-context-menu-li"
               onClick={() => {
                 if (v.onClick) v.onClick(v, position);
-                onClick(v);
               }}
-              key={v.name}
             >
               <span className="ez-context-menu-li-name">
                 {v.frontIcon && (
@@ -100,14 +90,14 @@ export const ContextMenu = (props: ContextMenuProps) => {
                 {v.name}
               </span>
               <span className="ez-context-menu-li-hotkey">
-                {v?.hotKey?.description ?? ""}
+                {v?.description ?? ""}
               </span>
             </li>
           );
         })}
       </ul>
     );
-  }, [menuList]);
+  }, [menuList, position]);
 
   return (
     <div
