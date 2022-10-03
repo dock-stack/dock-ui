@@ -18,7 +18,11 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "types": [
+      "vite/client"
+    ],
+    "jsxImportSource": "@emotion/react"
   },
   "include": [
     "src"
@@ -27,5 +31,5 @@
     {
       "path": "./tsconfig.node.json"
     }
-  ]
+  ],
 }

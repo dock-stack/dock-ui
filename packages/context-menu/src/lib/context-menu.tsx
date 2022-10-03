@@ -1,5 +1,6 @@
-import "./index.css";
+import classes from "./index.module.css";
 import { ContextMenuProps } from "./types";
+import { css } from "@emotion/react";
 import { RefObject, useEffect, useMemo, useRef, useState } from "react";
 
 /** todo: css in  */
@@ -71,7 +72,7 @@ export const ContextMenu = (props: ContextMenuProps) => {
   const MenuList = useMemo(() => {
     // todo: refactor this part
     return (
-      <ul className="ez-context-menu-ul">
+      <ul className={classes.ezContextMenuUl} css={css``}>
         {menuList.map((v) => {
           return (
             <li

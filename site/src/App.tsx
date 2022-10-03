@@ -1,7 +1,8 @@
-import { ContextMenu } from "./";
-import { Menu } from "./types";
-import { useMemo, useRef } from "react";
-import reactIcon from "../../assets/react.svg";
+import { useRef } from "react";
+import reactLogo from "./assets/react.svg";
+import "./App.css";
+import ContextMenu, { Menu } from "context-menu";
+// import "context-menu/style.css";
 
 function App() {
   const ref = useRef<HTMLDivElement>(null);
@@ -21,7 +22,7 @@ function App() {
     {
       name: "React",
       description: "An FrameWork",
-      frontIcon: <img src={reactIcon} />,
+      frontIcon: <img src={reactLogo} />,
     },
   ];
 

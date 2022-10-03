@@ -1,23 +1,15 @@
 {
-  "name": "ez-ui",
+  "name": "site",
   "private": true,
-  "version": "0.0.1",
+  "version": "0.0.0",
   "type": "module",
-  "repository": "https://github.com/ez2ui/ez-ui.git",
-  "author": "mapinxue@qq.com",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview"
   },
-  "workspaces": {
-    "packages": [
-      "packages/*",
-      "docs/*",
-      "site/*"
-    ]
-  },
   "dependencies": {
+    "context-menu": "../packages/context-menu",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
