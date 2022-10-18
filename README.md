@@ -1,4 +1,4 @@
-# EZ-UI
+# Dock-UI
 
 An advanced UI library for making project.
 
