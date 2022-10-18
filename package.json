@@ -1,31 +1,32 @@
 {
-  "name": "ez-ui",
-  "private": true,
-  "version": "0.0.1",
-  "type": "module",
-  "repository": "https://github.com/ez2ui/ez-ui.git",
-  "author": "mapinxue@qq.com",
-  "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview"
-  },
-  "workspaces": {
-    "packages": [
-      "packages/*",
-      "docs/*",
-      "site/*"
-    ]
-  },
-  "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
-  },
-  "devDependencies": {
-    "@types/react": "^18.0.17",
-    "@types/react-dom": "^18.0.6",
-    "@vitejs/plugin-react": "^2.1.0",
-    "typescript": "^4.6.4",
-    "vite": "^3.1.0"
-  }
+    "name": "ez-ui",
+    "private": true,
+    "version": "0.0.1",
+    "type": "module",
+    "repository": "https://github.com/ez2ui/ez-ui.git",
+    "author": "mapinxue@qq.com",
+    "scripts": {
+        "dev": "cd ./site && vite",
+        "build": "tsc && vite build",
+        "preview": "vite preview"
+    },
+    "workspaces": {
+        "packages": [
+            "packages/*",
+            "docs/*",
+            "site/*"
+        ]
+    },
+    "dependencies": {
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0"
+    },
+    "devDependencies": {
+        "@types/react": "^18.0.17",
+        "@types/react-dom": "^18.0.6",
+        "@vitejs/plugin-react": "^2.1.0",
+        "prettier": "2.7.1",
+        "typescript": "^4.6.4",
+        "vite": "^3.1.0"
+    }
 }

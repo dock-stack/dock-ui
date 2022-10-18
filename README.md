@@ -1,4 +1,5 @@
 # EZ-UI
+
 An advanced UI library for making project.
 
 ## Components
@@ -6,6 +7,7 @@ An advanced UI library for making project.
 ### ContextMenu
 
 #### Base Style
+
 Using `ContextMenu` component, you can make a context menu to replace original menu, and bind event on it.
 
 ![RUNOOB 图标](./public/context-menu.gif)
@@ -17,35 +19,36 @@ Using `ContextMenu` component, you can make a context menu to replace original m
 
 ```tsx
 const menuList: MenuList[] = [
-  {
-    name: "Copy",
-    hotKey: {
-      key: ["ctrl", "c"],
-      description: "Ctrl + C",
+    {
+        name: "Copy",
+        hotKey: {
+            key: ["ctrl", "c"],
+            description: "Ctrl + C",
+        },
     },
-  },
-  {
-    name: "Refresh",
-    hotKey: {
-      key: ["f5"],
-      description: "F5",
+    {
+        name: "Refresh",
+        hotKey: {
+            key: ["f5"],
+            description: "F5",
+        },
     },
-  },
-  {
-    name: "React",
-    frontIcon: <img src={reactIcon} />,
-  },
+    {
+        name: "React",
+        frontIcon: <img src={reactIcon} />,
+    },
 ];
 
 function App() {
-  const ref = useRef(null);
-  return (
-    <div className="App" ref={ref}>
-      <ContextMenu menuList={menuList} container={ref}/>
-    </div>
-  );
+    const ref = useRef(null);
+    return (
+        <div className="App" ref={ref}>
+            <ContextMenu menuList={menuList} container={ref} />
+        </div>
+    );
 }
 ```
+
 </details>
 
 #### Style Config
