@@ -1,11 +1,14 @@
 {
-    "name": "context-menu",
-    "version": "0.0.0",
+    "name": "@dock-ui/context-menu",
+    "version": "0.0.1",
     "type": "module",
+    "repository": {
+        "url": "https://github.com/ez2ui/dock-ui",
+        "type": "github",
+        "directory": "/packages/context-menu"
+    },
     "scripts": {
-        "dev": "vite",
-        "build": "tsc && vite build",
-        "preview": "vite preview"
+        "build": "tsc && vite build"
     },
     "dependencies": {
         "@emotion/react": "^11.10.4",
