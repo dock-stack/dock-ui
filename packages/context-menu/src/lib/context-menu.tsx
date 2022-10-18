@@ -100,7 +100,7 @@ export const ContextMenu = (props: ContextMenuProps) => {
                             key={v.name}
                             onClick={() => {
                                 if (!v.disabled) {
-                                    v.onClick?.(v, position);
+                                    v.onClick?.(v, position ?? [0, 0]);
                                     onClose?.(v);
                                     setStyle({ display: "none" });
                                 }
@@ -127,7 +127,7 @@ export const ContextMenu = (props: ContextMenuProps) => {
                             `}
                             onClick={() => {
                                 if (!v.disabled) {
-                                    v.onClick?.(v, position);
+                                    v.onClick?.(v, position ?? [0, 0]);
                                     onClose?.(v);
                                     setStyle({ display: "none" });
                                 }

@@ -25,7 +25,7 @@ export interface Menu {
      *
      * **param:** target ->  pointer(`[number, number]`) | undefined(hot key case)
      */
-    onClick?: (info: Menu, target?: Position) => void;
+    onClick?: (info: Menu, target: Position) => void;
 }
 
 export interface ContextMenuProps {
