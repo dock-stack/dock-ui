@@ -5,7 +5,6 @@ import ContextMenu, { Menu } from "context-menu";
 
 function App() {
     const ref = useRef<HTMLDivElement>(null);
-    const [visiable, setVisible] = useState<boolean>(false);
 
     const menuList: Menu[] = [
         {
@@ -56,7 +55,6 @@ function App() {
                 onClose={() => {
                     console.log("close");
                 }}
-                visible={visiable}
             />
         </div>
     );
