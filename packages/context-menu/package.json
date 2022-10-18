@@ -8,7 +8,7 @@
         "directory": "/packages/context-menu"
     },
     "scripts": {
-        "build": "tsc && vite build"
+        "build": "tsc && vite build --watch"
     },
     "dependencies": {
         "@emotion/react": "^11.10.4",

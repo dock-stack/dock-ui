@@ -1,23 +1,27 @@
-import { ContextMenuProps } from "./types";
 import { css } from "@emotion/react";
+import { ContextMenuProps } from "./types";
 import { RefObject, useEffect, useMemo, useRef, useState } from "react";
 
-/** todo: css in  */
 export const ContextMenu = (props: ContextMenuProps) => {
+    const ref = useRef<HTMLElement>(null);
     const { menuList = [], container, onOpen, onClose } = props;
 
-    const ref = useRef<HTMLElement>(null);
     const [position, setPosition] = useState<[number, number]>();
     const [style, setStyle] = useState<React.CSSProperties>({
         display: "none",
     }); // menu is unvisiable initially.
 
-    const onMenuClose = () => {
-        if (onClose) onClose();
-
-        setStyle({ display: "none" });
+    const onMenuClose = (e: MouseEvent) => {
+        if (style.display !== "none") {
+            // only in container
+            if (e.target == container?.current) {
+                setStyle({ ...style, display: "none" });
+                onClose?.();
+            }
+        }
     };
 
+    // useLayoutEffect maybe...
     useEffect(() => {
         if (container && container.current) {
             // add click listener
@@ -31,6 +35,9 @@ export const ContextMenu = (props: ContextMenuProps) => {
                 const x = event.offsetX;
                 const y = event.offsetY;
 
+                // effect: up data stream
+                if (onOpen) onOpen([x, y]);
+
                 // make a computable menu, set offset and make it hidden
                 setStyle({
                     top: -10000,
@@ -40,12 +47,16 @@ export const ContextMenu = (props: ContextMenuProps) => {
 
                 // set click position, pass to show effect
                 setPosition([x, y]);
-
-                // effect: up data stream
-                if (onOpen) onOpen([x, y]);
             };
         }
-    }, [container]);
+
+        return () => {
+            if (container && container.current) {
+                container.current.oncontextmenu = null;
+                container?.current?.removeEventListener("click", onMenuClose);
+            }
+        };
+    }, [container, style]);
 
     useEffect(() => {
         // show menu function
@@ -81,14 +92,32 @@ export const ContextMenu = (props: ContextMenuProps) => {
                     padding: 0;
                     margin: 5px 0;
                 `}
+                onClick={() => {}}
             >
                 {menuList.map((v) => {
-                    return (
+                    return v.render ? (
+                        <li
+                            key={v.name}
+                            onClick={() => {
+                                if (!v.disabled) {
+                                    v.onClick?.(v, position);
+                                    onClose?.(v);
+                                    setStyle({ display: "none" });
+                                }
+                            }}
+                        >
+                            {v.render(v, position ?? [0, 0])}
+                        </li>
+                    ) : (
                         <li
                             key={v.name}
                             css={css`
                                 padding: 3px 14px;
                                 cursor: pointer;
+                                pointer-events: ${v.disabled ? "none" : "auto"};
+                                color: ${v.disabled
+                                    ? "rgb(198, 198, 198)"
+                                    : "auto"};
                                 user-select: none;
                                 display: flex;
                                 justify-content: space-between;
@@ -97,18 +126,22 @@ export const ContextMenu = (props: ContextMenuProps) => {
                                 }
                             `}
                             onClick={() => {
-                                if (v.onClick) v.onClick(v, position);
+                                if (!v.disabled) {
+                                    v.onClick?.(v, position);
+                                    onClose?.(v);
+                                    setStyle({ display: "none" });
+                                }
                             }}
                         >
                             <span>
                                 {v.frontIcon && (
                                     <div
                                         css={css`
-                                            width: 20px;
-                                            height: 17px;
+                                            width: 17px;
+                                            height: 14px;
                                             display: inline-flex;
                                             position: relative;
-                                            top: 3px;
+                                            top: 1px;
                                         `}
                                     >
                                         {v.frontIcon}
@@ -144,7 +177,6 @@ export const ContextMenu = (props: ContextMenuProps) => {
                 min-width: 200px;
                 background-color: white;
             `}
-            className="a"
             ref={ref as RefObject<HTMLDivElement>}
         >
             {MenuList}

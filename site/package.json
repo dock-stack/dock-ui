@@ -9,7 +9,7 @@
         "preview": "vite preview"
     },
     "dependencies": {
-        "context-menu": "../packages/context-menu",
+        "@dock-ui/context-menu": "../packages/context-menu",
         "react": "^18.2.0",
         "react-dom": "^18.2.0"
     },

@@ -1,3 +1,5 @@
+type Position = [number, number];
+
 export interface Menu {
     /** Name of menu item. */
     name?: string;
@@ -8,13 +10,22 @@ export interface Menu {
     /** The Icon in front of `name` */
     frontIcon?: JSX.Element;
 
+    /** Able to click. */
+    disabled?: boolean;
+
+    /**
+     * render props: you can control what you want show as the list item.
+     * you can control UI but not close event.
+     */
+    render?: (item: Menu, position: Position) => JSX.Element;
+
     /** Click hook.
      *
      * **param:** info -> `clicked item`
      *
      * **param:** target ->  pointer(`[number, number]`) | undefined(hot key case)
      */
-    onClick?: (info: Menu, target?: [number, number]) => void;
+    onClick?: (info: Menu, target?: Position) => void;
 }
 
 export interface ContextMenuProps {
@@ -30,12 +41,15 @@ export interface ContextMenuProps {
      */
     container?: React.MutableRefObject<HTMLElement | null>;
 
-    /** Close hook, when clicking `blank` or `menu item` */
-    onClose?: () => void;
+    /**
+     * Close hook, when clicking `blank` or `menu item`.
+     * If item being `undefined`, it means click `black`.
+     */
+    onClose?: (item?: Menu) => void;
 
     /** Open hook.
      *
      * **param:** target ->  pointer(`[number, number]`)
      */
-    onOpen?: (target: [number, number]) => void;
+    onOpen?: (target: Position) => void;
 }

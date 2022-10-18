@@ -2,18 +2,20 @@ import { useRef, useState } from "react";
 import reactLogo from "./assets/react.svg";
 import "./App.css";
 import ContextMenu, { Menu } from "context-menu";
-// import ContextMenu, { Menu } from "../../packages/context-menu/src/lib/index";
-// import "context-menu/style.css";
 
 function App() {
     const ref = useRef<HTMLDivElement>(null);
+    const [visiable, setVisible] = useState<boolean>(false);
 
     const menuList: Menu[] = [
         {
             name: "Copy",
             description: "Ctrl + C",
-            onClick: (info, target) => {
-                console.log(info, target);
+            onClick: () => {
+                console.log("item");
+            },
+            render: (item, position) => {
+                return <div>{item.name + position.toString()}</div>;
             },
         },
         {
@@ -24,6 +26,11 @@ function App() {
             name: "React",
             description: "An FrameWork",
             frontIcon: <img src={reactLogo} />,
+        },
+        {
+            name: "Disabled",
+            description: "Alt + <-",
+            disabled: true,
         },
     ];
 
@@ -43,12 +50,13 @@ function App() {
             <ContextMenu
                 menuList={menuList}
                 container={ref}
-                onOpen={(target) => {
-                    console.log(target);
+                onOpen={() => {
+                    console.log("open");
                 }}
                 onClose={() => {
                     console.log("close");
                 }}
+                visible={visiable}
             />
         </div>
     );
