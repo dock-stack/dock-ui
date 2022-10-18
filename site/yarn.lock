@@ -247,8 +247,10 @@
     "@babel/helper-validator-identifier" "^7.19.1"
     to-fast-properties "^2.0.0"
 
-"@dock-ui/context-menu@../packages/context-menu":
-  version "0.0.1"
+"@dock-ui/context-menu@^0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@dock-ui/context-menu/-/context-menu-0.0.2.tgz#e710e14db5a44093c415dc4a0be842d6b214d39b"
+  integrity sha512-BO23CA+d8DfDQM+z8JF5/eZqYVCozEgXMmOOCpH7TFhekVVAiTYI9vPWv7qEc+k/cMXXWxXa9cCN7PmQoS72uA==
   dependencies:
     "@emotion/react" "^11.10.4"
     react "^18.2.0"
