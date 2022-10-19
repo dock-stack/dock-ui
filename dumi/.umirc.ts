@@ -6,4 +6,5 @@ export default defineConfig({
     '/icon.png',
   logo: '/icon.png',
   outputPath: '../docs',
+  base: "/dock-ui"
 });
