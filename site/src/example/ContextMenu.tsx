@@ -1,7 +1,7 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import reactLogo from "../assets/react.svg";
 import "../App.css";
-import ContextMenu, { Menu } from "context-menu";
+import ContextMenu, { Menu } from "@dock-ui/context-menu";
 
 function App() {
     const ref = useRef<HTMLDivElement>(null);
